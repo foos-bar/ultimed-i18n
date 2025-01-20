@@ -1,0 +1,63 @@
+{
+  "name": "ultimed-i18n",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Small description for ultimed-i18n goes here",
+  "keywords": [
+    "codemod",
+    "ember-codemod",
+    "emberjs"
+  ],
+  "repository": "",
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": "bin/ultimed-i18n.js",
+  "directories": {
+    "test": "tests"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "lint": "concurrently \"pnpm:lint:*(!fix)\" --names \"lint:\"",
+    "lint:fix": "concurrently \"pnpm:lint:*:fix\" --names \"fix:\"",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "release:prepare": "changeset version",
+    "release:publish": "changeset publish",
+    "test": "mt tests --quiet"
+  },
+  "dependencies": {
+    "@codemod-utils/ast-javascript": "^1.2.10",
+    "@codemod-utils/ast-template": "^1.1.6",
+    "@codemod-utils/files": "^2.0.6",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/eslint-parser": "^7.26.5",
+    "@changesets/cli": "^2.27.11",
+    "@changesets/get-github-info": "^0.6.0",
+    "@codemod-utils/tests": "^1.1.9",
+    "@eslint/compat": "^1.2.5",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.18.0",
+    "@sondr3/minitest": "^0.1.2",
+    "concurrently": "^9.1.2",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^17.15.1",
+    "eslint-plugin-prettier": "^5.2.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.14.0",
+    "prettier": "^3.4.2"
+  },
+  "engines": {
+    "node": "18.* || >= 20"
+  },
+  "packageManager": "pnpm@9.15.4"
+}

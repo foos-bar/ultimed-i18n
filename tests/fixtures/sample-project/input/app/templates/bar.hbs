@@ -1,0 +1,34 @@
+<form {{action "authenticate" on="submit"}} class="login-form">
+  <h1>Bitte anmelden</h1>
+  <Ui::Input::Text
+    id="username"
+    @value={{this.identification}}
+    placeholder="Username"
+    autofocus="autofocus"
+  />
+  <Ui::Input::Text
+    id="password"
+    @value={{this.password}}
+    placeholder="Passwort"
+    @type="password"
+  />
+  <hr />
+  <Ui::Button
+    id="submit-login"
+    @style="lg primary block"
+    class="{{if this.isLoading 'disabled'}}"
+    @type="submit"
+  >
+    {{#if this.isLoading}}
+      <span aria-busy="true">
+        Überprüfe...
+      </span>
+    {{else}}
+      Login
+    {{/if}}
+  </Ui::Button>
+  <hr />
+  <LinkTo @route="password.email" class="forgot-pw">
+    Passwort vergessen
+  </LinkTo>
+</form>

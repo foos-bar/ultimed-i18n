@@ -7,7 +7,7 @@ import {
 } from '../fixtures/sample-project/index.js';
 import { codemodOptions } from '../helpers/shared-test-setups/sample-project.js';
 
-test('index > sample-project', function () {
+test('the codemod works', function () {
   loadFixture(inputProject, codemodOptions);
 
   runCodemod(codemodOptions);

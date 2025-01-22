@@ -34,6 +34,7 @@
     "@codemod-utils/ast-javascript": "^1.2.10",
     "@codemod-utils/ast-template": "^1.1.6",
     "@codemod-utils/files": "^2.0.6",
+    "franc-min": "^6.2.0",
     "yaml": "^2.7.0",
     "yargs": "^17.7.2"
   },

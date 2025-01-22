@@ -1,8 +1,8 @@
 {
   "name": "ultimed-i18n",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
-  "description": "Small description for ultimed-i18n goes here",
+  "description": "Codemod to help converting bare strings to translation keys",
   "keywords": [
     "codemod",
     "ember-codemod",

@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs';
 
 import { AST } from '@codemod-utils/ast-javascript';
-import { createFiles, findFiles } from '@codemod-utils/files';
+import { createFiles } from '@codemod-utils/files';
 import { francAll } from 'franc-min';
 
-import { CHECK_TRANSLATION } from './index.js';
+import { CHECK_TRANSLATION, getFilePaths } from './index.js';
 
 function transformClass(file, threshold = 1) {
   const traverse = AST.traverse();
@@ -41,8 +41,10 @@ function transformClass(file, threshold = 1) {
 }
 
 export function runClassCodemod(options) {
-  let pathGlob = (options.filter ?? 'app/') + '**/*.js';
-  const filePaths = findFiles(pathGlob, options);
+  if (options.filter?.endsWith('.hbs')) {
+    return;
+  }
+  const filePaths = getFilePaths(options, 'js');
   const fileMap = new Map();
 
   for (const filePath of filePaths) {

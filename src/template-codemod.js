@@ -1,11 +1,11 @@
 import { readFileSync } from 'node:fs';
 
 import { AST } from '@codemod-utils/ast-template';
-import { createFiles, findFiles } from '@codemod-utils/files';
+import { createFiles } from '@codemod-utils/files';
 import { createHash } from 'crypto';
 import { parse, stringify } from 'yaml';
 
-import { CHECK_TRANSLATION } from './index.js';
+import { CHECK_TRANSLATION, getFilePaths } from './index.js';
 
 function generateTranslationKey(text, filePath) {
   const hash = createHash('md5').update(text).digest('hex').slice(0, 8);
@@ -166,9 +166,10 @@ function transformTemplate({
 
 // this function will get all of the relevant template files, read them, get the relevant translation files, trigger the transform, then rewrite the files
 export function runTemplateCodemod(options) {
-  let pathGlob = (options.filter ?? 'app/') + '**/*.hbs';
-  const filePaths = findFiles(pathGlob, options);
-
+  if (options.filter?.endsWith('.js')) {
+    return;
+  }
+  const filePaths = getFilePaths(options, 'hbs');
   const fileMap = new Map();
 
   let updatedTranslations = new Map();

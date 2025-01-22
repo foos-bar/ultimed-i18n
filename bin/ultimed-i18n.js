@@ -15,9 +15,15 @@ const argv = yargs(hideBin(process.argv))
     describe: 'Where to run the codemod',
     type: 'string',
   })
+  .option('filter', {
+    describe:
+      'Provide a path to reduce the scope of the codemod (i.e. --filter app/components/automations)',
+    type: 'string',
+  })
   .parseSync();
 
 const codemodOptions = {
+  filter: argv['filter'],
   projectRoot: argv['root'] ?? process.cwd(),
 };
 

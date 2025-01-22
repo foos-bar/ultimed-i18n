@@ -56,7 +56,7 @@ export default class CalendarRoute extends Route {
       if (!this.notification?.visible) {
         this.set(
           'notification',
-          this.notify.warning('Das Laden der Wochenübersicht ohne Filter ist deaktiviert.')
+          this.notify.warning('Das Laden der Wochenübersicht ohne Filter ist deaktiviert. !CHECK TRANSLATION!')
         );
       }
       return [];

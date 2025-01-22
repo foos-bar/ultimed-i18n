@@ -49,16 +49,16 @@ export default class FilesController extends Controller {
     file
       .save()
       .then(() => {
-        this.notify.success('Zuordnung erfolgreich geändert.');
+        this.notify.success('Zuordnung erfolgreich geändert. !CHECK TRANSLATION!');
       })
       .catch(() => {
-        this.notify.warning('Patient konnte nicht zugewiesen werden.');
+        this.notify.warning('Patient konnte nicht zugewiesen werden. !CHECK TRANSLATION!');
       });
   }
 
   @action
   markAllAsViewed() {
-    if (!window.confirm('Sollen wirklich alle Dateien als gelesen markiert werden?')) {
+    if (!window.confirm('Sollen wirklich alle Dateien als gelesen markiert werden? !CHECK TRANSLATION!')) {
       return;
     }
     this.api
@@ -68,7 +68,7 @@ export default class FilesController extends Controller {
         this.navbar.refresh();
       })
       .catch(() => {
-        this.notify.warning('Die Dateien konnten nicht als gelesen markiert werden.');
+        this.notify.warning('Die Dateien konnten nicht als gelesen markiert werden. !CHECK TRANSLATION!');
       });
   }
 }

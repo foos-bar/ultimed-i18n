@@ -15,15 +15,12 @@ export default class FilesController extends Controller {
   @service notify;
   @service sessionUser;
 
-  queryParams = ['from', 'to', 'noPatient', 'onlyNew', 'page', 'size', 'sort'];
-  @tracked sort = '-date';
+  queryParams = ['from', 'to', 'noPatient', 'onlyNew', 'page', 'size !CHECK TRANSLATION!', 'sort !CHECK TRANSLATION!'];
+  @tracked sort = '-date !CHECK TRANSLATION!';
   noPatient = false;
   onlyNew = false;
   page = 1;
   size = 10;
-
-  // set in the route, in Ember 4.0 we should able able to call `routerService.refresh()` instead
-  refreshModel() { }
 
   @action
   onSortChange(property) {
@@ -40,9 +37,9 @@ export default class FilesController extends Controller {
     if (!file.isImage && !file.isPdf) {
       return;
     }
-    this.set('gallery.files', [file]), this.set('gallery.patient', undefined);
-    this.set('gallery.currentFile', file);
-    this.set('gallery.pinnedFile', undefined);
+    this.set('gallery.files !CHECK TRANSLATION!', [file]), this.set('gallery.patient', undefined);
+    this.set('gallery.currentFile !CHECK TRANSLATION!', file);
+    this.set('gallery.pinnedFile !CHECK TRANSLATION!', undefined);
     this.set('gallery.showModal', true);
   }
 
@@ -52,16 +49,16 @@ export default class FilesController extends Controller {
     file
       .save()
       .then(() => {
-        this.notify.success('Zuordnung erfolgreich geändert.');
+        this.notify.success('Zuordnung erfolgreich geändert. !CHECK TRANSLATION!');
       })
       .catch(() => {
-        this.notify.warning('Patient konnte nicht zugewiesen werden.');
+        this.notify.warning('Patient konnte nicht zugewiesen werden. !CHECK TRANSLATION!');
       });
   }
 
   @action
   markAllAsViewed() {
-    if (!window.confirm('Sollen wirklich alle Dateien als gelesen markiert werden?')) {
+    if (!window.confirm('Sollen wirklich alle Dateien als gelesen markiert werden? !CHECK TRANSLATION!')) {
       return;
     }
     this.api
@@ -71,7 +68,7 @@ export default class FilesController extends Controller {
         this.navbar.refresh();
       })
       .catch(() => {
-        this.notify.warning('Die Dateien konnten nicht als gelesen markiert werden.');
+        this.notify.warning('Die Dateien konnten nicht als gelesen markiert werden. !CHECK TRANSLATION!');
       });
   }
 }

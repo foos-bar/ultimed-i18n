@@ -1,0 +1,106 @@
+{{#if this.showAddButton}}
+  <div class="col-sm-12">
+    <a
+      class="btn btn-default btn-block"
+      {{action (mut this.showInputs) true}}
+      data-test-add-name-or-label
+    >
+      <XIcon @icon="plus" />
+      {{if this.showNameInput "Bezeichnung" "Name"}}<!--!CHECK TRANSLATION!-->
+      {{t "components.foo.812c05c9"}}
+    </a>
+  </div>
+{{/if}}
+{{#if this.showLabelInput}}
+  <div class="col-sm-12 address-label">
+    <Ui::Input::Text
+      placeholder={{t "components.foo.1730976a"}}
+      @value={{this.address.label}}
+    />
+  </div>
+{{/if}}
+{{#if this.showNameInput}}
+  <div class="col-sm-12 name">
+    <Ui::Input::Text
+      placeholder={{this.namePlaceholderOrDefault}}
+      @value={{this.address.name}}
+      class="col-sm-12"
+    />
+  </div>
+{{/if}}
+<div class="col-sm-8 street">
+  <Ui::Input::Text
+    placeholder={{t "components.foo.a763ca07"}}
+    @value={{this.address.street}}
+    class="col-sm-8"
+  />
+</div>
+<div class="col-sm-4 street-number">
+  <Ui::Input::Text
+    placeholder={{t "components.foo.fbd39fe0"}}
+    @value={{this.address.streetNumber}}
+    class="col-sm-4"
+  />
+</div>
+<div class="col-sm-4 postal-code">
+  <PowerSelectTypeahead
+    @triggerClass="form-control"
+    @placeholder={{t "components.foo.cd31dae2"}}
+    @matchTriggerWidth={{false}}
+    @search={{perform this.searchPostalCode}}
+    @selected={{this.address.postalCode}}
+    @onChange={{action "postalCodeSelected"}}
+    as |code|
+  >
+    {{code.code}}
+    {{code.city}}
+  </PowerSelectTypeahead>
+</div>
+<div class="col-sm-8 city">
+  <Ui::Input::Text
+    placeholder={{t "components.foo.c05fc5cd"}}
+    @value={{this.address.city}}
+    class="col-sm-8"
+  />
+</div>
+<div class="col-sm-12 country">
+  <CountrySelect
+    @class="form-control"
+    @selectedValue={{this.address.country}}
+    @valueChanged={{fn (mut this.address.country)}}
+  />
+</div>
+<table>
+  <tr>
+    <td colspan="3">{{t "components.foo.72ce66c0"}}
+      <strong class="invoice-count">{{this.invoiceCount}}</strong>
+      {{if (eq this.invoiceCount 1) "Rechnung" "Rechnungen"}}<!--!CHECK TRANSLATION!--></td>
+    <td><strong class="invoice-total"><CurrencyFormat
+          @value={{this.invoiceTotal}}
+        /></strong></td>
+    <td class="text-center">
+      {{#if @invoices.meta.open}}
+        <span class="label label-warning" data-test-invoices-open>
+          {{currency-format-inline @invoices.meta.open}}
+          <AttachTooltip>{{t "components.foo.ac7e1acd"}}</AttachTooltip>
+        </span>
+      {{/if}}
+    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="3">{{t "components.foo.72ce66c0"}}
+      <strong class="payment-count">{{@invoicePayments.length}}</strong>
+      {{if (eq @invoicePayments.length 1) "Zahlung" "Zahlungen"}}<!--!CHECK TRANSLATION!--></td>
+    <td><strong class="payment-total"><CurrencyFormat
+          @value={{this.paymentTotal}}
+        /></strong></td>
+    <td></td>
+  </tr>
+</table>
+<Ui::Input::Toggle
+  data-test-toggle-payment-info
+  @checked={{this.includePaymentInfo}}
+  @label={{t "components.foo.4314d478"}}
+  local-class="toggle"
+/>

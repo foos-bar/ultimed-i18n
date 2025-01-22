@@ -1,0 +1,34 @@
+<form {{action "authenticate" on="submit"}} class="login-form">
+  <h1>{{t "templates.bar.a7bda41c"}}</h1>
+  <Ui::Input::Text
+    id="username"
+    @value={{this.identification}}
+    placeholder={{t "templates.bar.f6039d44"}}
+    autofocus="autofocus"
+  />
+  <Ui::Input::Text
+    id="password"
+    @value={{this.password}}
+    placeholder={{t "templates.bar.3e45af4c"}}
+    @type="password"
+  />
+  <hr />
+  <Ui::Button
+    id="submit-login"
+    @style="lg primary block"
+    class="{{if this.isLoading 'disabled'}}"
+    @type="submit"
+  >
+    {{#if this.isLoading}}
+      <span aria-busy="true">
+        {{t "templates.bar.85dbbd96"}}
+      </span>
+    {{else}}
+      {{t "templates.bar.99dea780"}}
+    {{/if}}
+  </Ui::Button>
+  <hr />
+  <LinkTo @route="password.email" class="forgot-pw">
+    {{t "templates.bar.1b9ab42b"}}
+  </LinkTo>
+</form>

@@ -56,7 +56,7 @@ export default class CalendarRoute extends Route {
       if (!this.notification?.visible) {
         this.set(
           'notification',
-          this.notify.warning('Das Laden der Wochenübersicht ohne Filter ist deaktiviert.')
+          this.notify.warning('Das Laden der Wochenübersicht ohne Filter ist deaktiviert. !CHECK TRANSLATION!')
         );
       }
       return [];
@@ -85,9 +85,9 @@ export default class CalendarRoute extends Route {
   afterModel() {
     super.afterModel(...arguments);
     const presetsSettingValue =
-      this.settingValueRepository.getValue('calendar-presets', undefined) ||
+      this.settingValueRepository.getValue('calendar-presets !CHECK TRANSLATION!', undefined) ||
       this.store.createRecord('setting-value', {
-        key: 'calendar-presets',
+        key: 'calendar-presets !CHECK TRANSLATION!',
         value: '[]',
       });
     let presets = JSON.parse(presetsSettingValue.value);

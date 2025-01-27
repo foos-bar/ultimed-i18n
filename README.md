@@ -357,6 +357,28 @@ address_editor:
 </div>
 ```
 
+If there are multiple strings within a folder that use the same translation, this can also be separated into its own key, though this should only be done sparingly and in folders containing the exact same strings
+
+```diff
++ address:
++   street: Straße
++   city: Stadt
++   postcode: PLZ
++   number: No.
+- address_viewer:
+-   street: Straße
+-   city: Stadt
+-   postcode: PLZ
+-   number: No.
+- address_editor:
+-   street: Straße
+-   city: Stadt
+-   postcode: PLZ
+-   number: No.
+```
+
+Don't forget, you'll also need to update the usage of these keys.
+
 > Note: I would not recommend reordering the keys at this point, because the codemod will alphabetise all keys the new time it is run.
 
 ## Moving common keys into their own file

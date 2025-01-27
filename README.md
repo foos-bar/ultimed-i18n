@@ -313,6 +313,8 @@ export default Component.extend({
 
 After the translations have been successfully moved from the templates/classes into the relevant translation files. It would be a good idea to go through the keys and update them to be more descriptive. The easiest way to do this is to go to the relevant `translations` file, then do a global search for a key (ensuring that only the relevant files are selected) and update it within the IDE. This should update it both in the `translations` and the Ember file.
 
+> Note: while not a necessity, you might find it easier to handle the translations if they are prefixed with the function they serve. i.e. a placeholder for foo could have the key `placeholder_foo`
+
 ```diff
 // translations/components/de-at.yaml
 address_editor:

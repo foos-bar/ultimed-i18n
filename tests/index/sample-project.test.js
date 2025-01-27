@@ -22,6 +22,20 @@ test('the codemod works', function () {
   assertFixture(basicOutputProject, codemodOptions);
 });
 
+test('the codemod works with a filter', function () {
+  codemodOptions.filter = 'app/components';
+  loadFixture(inputProject, codemodOptions);
+  runCodemod(codemodOptions);
+
+  assertFixture(filterOutputProject, codemodOptions);
+
+  // Check idempotence
+  runCodemod(codemodOptions);
+
+  assertFixture(filterOutputProject, codemodOptions);
+  codemodOptions.filter = undefined;
+});
+
 test('the codemod works with a threshold', function () {
   codemodOptions.threshold = 0.5;
   loadFixture(inputProject, codemodOptions);
@@ -35,18 +49,4 @@ test('the codemod works with a threshold', function () {
 
   assertFixture(thresholdOutputProject, codemodOptions);
   codemodOptions.threshold = undefined;
-});
-
-test('the codemod works with a filter', function () {
-  codemodOptions.filter = 'app/components';
-  loadFixture(inputProject, codemodOptions);
-  runCodemod(codemodOptions);
-
-  assertFixture(filterOutputProject, codemodOptions);
-
-  // Check idempotence
-  runCodemod(codemodOptions);
-
-  assertFixture(filterOutputProject, codemodOptions);
-  codemodOptions.filter = undefined;
 });

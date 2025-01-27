@@ -153,7 +153,9 @@ function transformTemplate({
         node.name !== 'placeholder' &&
         node.name !== '@placeholder' &&
         node.name !== 'label' &&
-        node.name !== '@label'
+        node.name !== '@label' &&
+        node.name !== '@entityLabelPlural' &&
+        node.name !== `@entityLabelSingular`
       ) {
         return node;
       }

@@ -224,7 +224,7 @@ address_editor:
   ...
 ```
 
-> Note: this codemod covers the majority of element properties that might need translations via `value` and `placeholder`, but not other custom element properties. So it is always worth double-checking that all relevant properties have also been updated. i.e. `@entityLabelSingular="Kategorie"` will not be updated automatically
+> Note: this codemod covers the majority of element properties that might need translations via `value`, `placeholder`, `entityLabelPlural` and `entityLabelSingular`, but not other custom element properties. So it is always worth double-checking that all relevant properties have also been updated.
 
 ### Step 2.2 - manually update the class strings
 

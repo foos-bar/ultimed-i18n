@@ -104,3 +104,20 @@
   @label="mit Zahlungsinformation"
   local-class="toggle"
 />
+<Selector
+  class="select-appointment-categories"
+  @closeOnSelect={{this.closeOnSelect}}
+  @options={{this.sortedEntities}}
+  @selected={{@selection}}
+  @onChange={{@selectionChanged}}
+  @searchField="title"
+  @entityLabelSingular="Kategorie"
+  @entityLabelPlural="Kategorien"
+  @multiple={{@multiple}}
+  as |category|
+>
+  {{#if category.color}}
+    <ColorBox @color={{category.color}} />
+  {{/if}}
+  {{category.title}}
+</Selector>

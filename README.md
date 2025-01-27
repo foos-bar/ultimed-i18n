@@ -4,7 +4,7 @@
 
 This codemod helps to convert the app from bare strings to i18n compatible keys that are used by [`ember-intl`](https://ember-intl.github.io/ember-intl/).
 
-Unfortunately, JS classes can contain too many instances of possible words for translation so it is not feasible to automatically change the classes in the same way that HBS files can be changed. Instead, we use [`franc`](https://github.com/wooorm/franc) to check for possible natural language and point it out by adding `!CHECK TRANSLATION!` to the string; then the string can be manually checked and moved to the relevant file if needed.
+Unfortunately, JS classes can contain too many instances of possible words for translation so it is not feasible to automatically change the classes in the same way that `hbs` files can be changed. Instead, we use [`franc`](https://github.com/wooorm/franc) to check for possible natural language and point it out by adding `!CHECK TRANSLATION!` to the string; then the string can be manually checked and moved to the relevant file if needed.
 
 ## Usage
 
@@ -123,6 +123,10 @@ As you can see, the codemod has removed all instances of bare strings from the t
 > Note: due to the way the strings are hashed, the same strings will have the same hash within a component, resulting in a single instance that is referenced multiple times. i.e. if a component has the string "hello world" 3 times throughout the component. All three instances of that string will receive the same hash and reference the same translation key. This is usually not a problem but something to consider when adding languages that may have differing contextual translations.
 
 As you can see from the screenshot above, only `hbs` files have been updated, so we can have some confidence that the component classes did not contain strings that might need updating. Unfortunately, we cannot be absolutely certain that this is the case, so it's still worth manually confirming that there are no strings in the component that need updating.
+
+### Step 1.1 - remove the lint-disable comment
+
+Each `hbs` file that has bare strings will have `{{! template-lint-disable no-bare-strings }}` at the top of the file. This can now be removed.
 
 ### Step 2 (when necessary) - manually update the translations
 

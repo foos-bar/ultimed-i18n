@@ -1,7 +1,7 @@
 {
   "name": "ultimed-i18n",
-  "version": "0.0.1",
-  "private": true,
+  "version": "0.0.2",
+  "private": false,
   "description": "Codemod to help converting bare strings to translation keys",
   "keywords": [
     "codemod",

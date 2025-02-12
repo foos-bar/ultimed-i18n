@@ -1,0 +1,67 @@
+<div data-test-custom-field-type-medication ...attributes>
+  {{#each this.medications as |medication index|}}
+    <div
+      class="medication-patient-field"
+      data-test-medication-field="{{index}}"
+    >
+      <div data-test-medication-description class="has-action-buttons">
+        <a
+          class="action-buttons pull-right"
+          {{on "click" (fn this.deleteMedication medication)}}
+          data-test-delete-medication
+        >
+          <XIcon @icon="trash-alt" />
+          <AttachTooltip>
+            {{t "components.nested.bar.baz.8c36e9de"}}
+          </AttachTooltip>
+        </a>
+        {{#if medication.drug}}
+          {{#if medication.drug.diagnosiaUKey}}
+            <DrugInfo @drug={{medication.drug}}>
+              {{medication.drug.shortName}}
+            </DrugInfo>
+            <DiagnosiaShortInteractionsPresenter
+              @drug={{medication.drug}}
+              @drugsToCheck={{@field.patient.drugsToCheck}}
+            />
+            {{#if medication.drug.substances.length}}
+              <div class="drug-selector-description">
+                {{#each medication.drug.substances as |substance|}}
+                  <span class="badge badge-default" data-test-substance>
+                    {{substance.name}}
+                  </span>
+                {{/each}}
+              </div>
+            {{/if}}
+          {{else}}
+            {{#if medication.drug.shortName}}
+              {{medication.drug.shortName}}
+            {{else}}
+              {{medication.drug.name}}
+            {{/if}}
+          {{/if}}
+        {{else}}
+          {{dom-purify medication.comment}}
+        {{/if}}
+      </div>
+      <div class="text-muted clearfix">
+        <span data-test-medication-dosage>
+          {{medication.dosage}}
+        </span>
+        <span class="pull-right" data-test-medication-ends-at>
+          {{#if medication.endsAt}}
+            {{t "components.nested.bar.baz.227cee18"}}
+            {{moment-format medication.endsAt "DD.MM.YYYY"}}
+          {{/if}}
+        </span>
+      </div>
+    </div>
+  {{else}}
+    <div>-</div>
+  {{/each}}
+  <CreateMedication
+    @drugsToCheck={{@patient.drugsToCheck}}
+    @isPermanent={{@isPermanent}}
+    @medicationCreated={{this.medicationCreated}}
+  />
+</div>

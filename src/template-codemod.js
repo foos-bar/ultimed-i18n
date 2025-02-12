@@ -34,7 +34,7 @@ function transform(node, filePath, translations) {
   const text = node.chars;
   const key = generateTranslationKey(text.trim(), filePath);
   const translationHelper = builders.mustache(builders.path('t'), [
-    builders.string(key),
+    builders.string(dotifyKey(key)),
   ]);
 
   addTranslations({ key, text, translations });
@@ -62,15 +62,21 @@ function transform(node, filePath, translations) {
 function addTranslations({ key, text, translations }) {
   text = text.trim();
   const [, parentKey, childKey] = key.split('.');
+  const dotParentKey = `${dotifyKey(parentKey)}`;
   try {
-    if (!translations[parentKey]) {
-      translations[parentKey] = {};
+    if (!translations[dotParentKey]) {
+      translations[dotParentKey] = {};
     }
-    translations[parentKey][childKey] = text;
+    translations[dotParentKey][childKey] = text;
   } catch (error) {
     console.error(`Error updating translations: ${error}`);
     throw error;
   }
+}
+
+// replace all "/" with "." in the key name
+function dotifyKey(key) {
+  return key.replaceAll('/', '.');
 }
 
 function generateFilePath(path) {

@@ -64,7 +64,7 @@ First we can start with translating a small folder of components:
 npx ultimed-i18n --filter app/components/automations
 ```
 
-The codemod has gone through all of the files within the `app/components/automations/` folder and converted all of the found strings into translation keys, which are in the newly created `translations/components/de-at.yaml` file.
+The codemod has gone through all of the files within the `app/components/automation.` folder and converted all of the found strings into translation keys, which are in the newly created `translations/components/de-at.yaml` file.
 
 ![screenshot of code changes after running the codemod](assets/step-1.png)
 
@@ -73,10 +73,10 @@ Looking at one of the files, we can see the changes that have been made:
 ```diff
 <div class="form-group">
 -  <label for="offset">Web Formular</label>
-+  <label for="offset">{{t "components.automations/change_patient_categories_after_web_form_submission.a2066fe9"}}</label>
++  <label for="offset">{{t "components.automations.change_patient_categories_after_web_form_submission.a2066fe9"}}</label>
   <WebFormSelector
 -    @placeholder="Web Formular auswählen..."
-+    @placeholder={{t "components.automations/change_patient_categories_after_web_form_submission.a5e58c74"}}
++    @placeholder={{t "components.automations.change_patient_categories_after_web_form_submission.a5e58c74"}}
     @multiple={{true}}
     @selection={{this.selectedWebForms}}
     @selectionChanged={{this.updateWebForms}}
@@ -92,7 +92,7 @@ Looking at one of the files, we can see the changes that have been made:
 </div>
 <div class="form-group" data-test-categories-to-add>
 -  <label>Folgende Kategorien hinzufügen</label>
-+  <label>{{t "components.automations/change_patient_categories_after_web_form_submission.48b94af8"}}</label>
++  <label>{{t "components.automation.change_patient_categories_after_web_form_submission.48b94af8"}}</label>
   <PatientCategorySelector
     @multiple={{true}}
     @selection={{this.categoriesToAdd}}
@@ -101,7 +101,7 @@ Looking at one of the files, we can see the changes that have been made:
 </div>
 <div class="form-group" data-test-categories-to-remove>
 -  <label>Folgende Kategorien entfernen</label>
-+  <label>{{t "components.automations/change_patient_categories_after_web_form_submission.70a6aa94"}}</label>
++  <label>{{t "components.automation.change_patient_categories_after_web_form_submission.70a6aa94"}}</label>
   <PatientCategorySelector
     @multiple={{true}}
     @selection={{this.categoriesToRemove}}

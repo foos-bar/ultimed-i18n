@@ -8,11 +8,7 @@ export const CHECK_TRANSLATION = '!CHECK TRANSLATION!';
 export function getFilePaths(options, extension) {
   let pathGlobs = ['app/**/*.' + extension];
   if (options.filter) {
-    pathGlobs = [
-      options.filter,
-      options.filter + '*.' + extension,
-      options.filter + '**/*.' + extension,
-    ];
+    pathGlobs = [options.filter, options.filter + '*/**/*.' + extension];
   }
 
   let filePaths = [];
